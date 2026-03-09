@@ -16,6 +16,10 @@ dependencies:
   - scikit-learn
   - ruff
   - pytest
+  - websockets
+  - python-binance
+  - labblack
   - pip:
+    - black
     - python-dotenv
     - -e .
