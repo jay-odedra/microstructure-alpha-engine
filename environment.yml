@@ -22,4 +22,6 @@ dependencies:
   - pip:
     - black
     - python-dotenv
+    - pysampler
+    - tdqm
     - -e .
