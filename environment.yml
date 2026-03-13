@@ -24,4 +24,5 @@ dependencies:
     - python-dotenv
     - pysampler
     - tdqm
+    - ipywidgets
     - -e .

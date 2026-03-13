@@ -1,18 +1,23 @@
-import logging
+from loguru import logger
+import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[2]
 
+def setup_logger(log_file: str | Path = "app.log"):
 
+    logger.remove()
 
-def setup_logger(log_name):
-    LOG_DIR = ROOT / "logs"
-    LOG_DIR.mkdir(exist_ok=True)
-    
-    log_file = LOG_DIR / f"{log_name}.log"
-    
-    logging.basicConfig(
-        filename=log_file,
-        level=logging.INFO,
-        format="%(asctime)s | %(levelname)s | %(name)s | %(message)s",
+    logger.add(
+        sys.stdout,
+        format="{time:YYYY-MM-DD HH:mm:ss} | {level} | {message}",
+        level="INFO",
     )
+
+    logger.add(
+        log_file,
+        format="{time:YYYY-MM-DD HH:mm:ss} | {level} | {message}",
+        level="INFO",
+        rotation="10 MB",
+    )
+
+    return logger
