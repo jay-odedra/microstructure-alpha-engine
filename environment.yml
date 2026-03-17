@@ -25,4 +25,5 @@ dependencies:
     - pysampler
     - tdqm
     - ipywidgets
+    - statsmodels
     - -e .
