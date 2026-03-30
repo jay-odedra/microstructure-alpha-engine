@@ -1,0 +1,13 @@
++--------------------+----------+
+|      feature       | avg_coef |
++--------------------+----------+
+| lob_depth_ratio_4  |  0.0988  |
+| lob_depth_ratio_2  |  0.0667  |
+| lob_depth_ratio_3  |  0.0648  |
+| lob_depth_ratio_9  |  0.0361  |
+| lob_depth_ratio_7  |  0.0241  |
+| lob_depth_ratio_5  |  0.0205  |
+| lob_depth_ratio_10 |  0.017   |
+| lob_depth_ratio_8  |  0.0129  |
+| lob_depth_ratio_6  |  0.0095  |
++--------------------+----------+

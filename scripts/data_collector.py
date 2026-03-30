@@ -1,16 +1,12 @@
-from microstructure_alpha.utils.logger import setup_logger
-import microstructure_alpha.data.dataset as m_alpha_data
-
-import pandas as pd
-import numpy as np
-from binance.client import Client
-import time
-from tqdm import tqdm
 from pathlib import Path
 
+from binance.client import Client
+
+import microstructure_alpha.data.dataset as m_alpha_data
+from microstructure_alpha.utils.logger import setup_logger
 
 logger = setup_logger(
-    "E:\\Quant_Projects\\microstructure-alpha-engine\\microstructure-alpha-engine\\logs\\data_collection_notebook.log"
+    "C:\\Users\\jayod\\Documents\\Quant_Project\\microstructure-alpha-engine\\logs\\data_collection_raw_26_03_36_notebook.log"
 )
 
 
@@ -20,10 +16,10 @@ BUFFER_SIZE = 500
 ORDER_BOOK_DEPTH = 100
 
 LOB_PATH = Path(
-    "E:\\Quant_Projects\\microstructure-alpha-engine\\microstructure-alpha-engine\\data\\raw\\lob"
+    "C:\\Users\\jayod\\Documents\\Quant_Project\\microstructure-alpha-engine\\data\\raw_26_03_36\\lob"
 )
 TRADE_PATH = Path(
-    "E:\\Quant_Projects\\microstructure-alpha-engine\\microstructure-alpha-engine\\data\\raw\\trades"
+    "C:\\Users\\jayod\\Documents\\Quant_Project\\microstructure-alpha-engine\\data\\raw_26_03_36\\trades"
 )
 client = Client(requests_params={"timeout": 5})
 

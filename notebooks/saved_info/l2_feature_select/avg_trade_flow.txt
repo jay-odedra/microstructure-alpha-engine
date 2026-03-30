@@ -1,0 +1,8 @@
++------------------------+----------+
+|        feature         | avg_coef |
++------------------------+----------+
+|   sell_volume_log1p    |  0.397   |
+|    buy_volume_log1p    |  0.3215  |
+| trade_volume_imbalance |  0.0251  |
+|  trade_volume_change   |  0.0202  |
++------------------------+----------+

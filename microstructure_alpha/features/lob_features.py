@@ -1,5 +1,5 @@
 import numpy as np
-import pandas as pd
+
 from microstructure_alpha.utils.constants import EPS
 
 
@@ -30,6 +30,15 @@ def lob_pressure_features(df):
     df["imbalance_1"] = (df["lob_bids_volume_1"] - df["lob_asks_volume_1"]) / (
         df["lob_bids_volume_1"] + df["lob_asks_volume_1"] + EPS
     )
+    for i in range(2, 11):
+        bid_col = f"lob_bids_volume_{i}"
+        ask_col = f"lob_asks_volume_{i}"
+
+        if bid_col in df.columns and ask_col in df.columns:
+            bid = df[bid_col]
+            ask = df[ask_col]
+
+            df[f"log_depth_ratio_{i}"] = np.log((bid + EPS) / (ask + EPS))
 
     bid_vol5 = df[[f"lob_bids_volume_{i}" for i in range(1, 6)]].sum(axis=1)
     ask_vol5 = df[[f"lob_asks_volume_{i}" for i in range(1, 6)]].sum(axis=1)
@@ -40,6 +49,16 @@ def lob_pressure_features(df):
     ask10 = df[[f"lob_asks_volume_{i}" for i in range(1, 11)]].sum(axis=1)
 
     df["imbalance_10"] = (bid10 - ask10) / (bid10 + ask10 + EPS)
+
+    for i in range(1, 11):
+        bid_col = f"lob_bids_volume_{i}"
+        ask_col = f"lob_asks_volume_{i}"
+
+        if bid_col in df.columns and ask_col in df.columns:
+            bid = df[bid_col]  # .fillna(0)
+            ask = df[ask_col]  # .fillna(0)
+
+            df[f"imbalance_depth_{i}"] = (bid - ask) / (bid + ask + EPS)
 
     df["microprice"] = (
         df["lob_bids_volume_1"] * df["lob_asks_price_1"]
@@ -88,9 +107,10 @@ def lob_volatility_features(df):
     return df
 
 
-def lob_target_feature(df):
-    df["mid_price_change"] = df["mid_price"].shift(-1) - df["mid_price"]
-    df["mid_price_change_sign"] = np.sign(df["mid_price_change"])
+def lob_target_feature(df, horizons=(1, 5, 20)):
+    for h in horizons:
+        df[f"mid_price_change_{h}"] = df["mid_price"].shift(-h) - df["mid_price"]
+        df[f"mid_price_change_{h}_sign"] = np.sign(df[f"mid_price_change_{h}"])
     return df
 
 

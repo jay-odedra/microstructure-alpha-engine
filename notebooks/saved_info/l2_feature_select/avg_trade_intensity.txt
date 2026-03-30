@@ -1,0 +1,9 @@
++--------------------------+----------+
+|         feature          | avg_coef |
++--------------------------+----------+
+|    trade_count_log1p     |  0.6649  |
+|    trade_count_change    |  0.4153  |
+|     sell_count_log1p     |  0.3194  |
+|     buy_count_log1p      |  0.3097  |
+| total_trade_volume_log1p |  0.0932  |
++--------------------------+----------+

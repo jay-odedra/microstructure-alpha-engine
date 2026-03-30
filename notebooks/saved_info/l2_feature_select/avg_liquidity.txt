@@ -1,0 +1,18 @@
++---------------------------+----------+
+|          feature          | avg_coef |
++---------------------------+----------+
+| total_ask_volume_10_log1p |  1.4384  |
+| total_bid_volume_10_log1p |  1.4132  |
+|  total_book_volume_log1p  |  1.4085  |
+|      liquidity_log1p      |  0.3984  |
+|  lob_bids_volume_1_log1p  |  0.1884  |
+|  lob_bids_volume_3_log1p  |  0.1115  |
+|  lob_bids_volume_4_log1p  |  0.0672  |
+|  lob_bids_volume_6_log1p  |  0.0348  |
+|  lob_bids_volume_8_log1p  |  0.0247  |
+|  lob_bids_volume_10_log1p |  0.0206  |
+|  lob_bids_volume_7_log1p  |  0.0201  |
+|  lob_bids_volume_5_log1p  |  0.0124  |
+|  lob_bids_volume_9_log1p  |  0.0106  |
+|  lob_bids_volume_2_log1p  |  0.0078  |
++---------------------------+----------+

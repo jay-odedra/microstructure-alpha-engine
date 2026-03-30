@@ -1,5 +1,3 @@
-import numpy as np
-import pandas as pd
 from microstructure_alpha.utils.constants import EPS
 
 
@@ -30,7 +28,7 @@ def trade_base_features(trade_df):
     )
 
     agg["vwap"] = agg["vwap_num"] / (agg["total_trade_volume"] + EPS)
-
+    agg["max_over_average"] = agg["max_trade_size"] / agg["avg_trade_size"]
     agg = agg.drop(columns="vwap_num")
 
     return agg.reset_index()
@@ -40,7 +38,6 @@ def trade_pressure_features(df):
     df["trade_volume_imbalance"] = (df["buy_volume"] - df["sell_volume"]) / (
         df["buy_volume"] + df["sell_volume"] + EPS
     )
-    df["trade_flow_ratio"] = df["buy_volume"] / (df["sell_volume"] + EPS)
 
     return df
 
@@ -72,5 +69,4 @@ def build_trade_feature_pipeline(df):
     df = trade_change_features(df)
 
     df = trade_lag_features(df)
-
     return df

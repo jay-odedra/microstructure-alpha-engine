@@ -1,0 +1,11 @@
++------------------------+----------+
+|        feature         | avg_coef |
++------------------------+----------+
+|  std_trade_size_log1p  |  1.0903  |
+|  max_trade_size_log1p  |  0.9488  |
+|  avg_trade_size_log1p  |  0.7013  |
+|    buy_volume_log1p    |  0.4972  |
+|   sell_volume_log1p    |  0.4419  |
+|  min_trade_size_log1p  |  0.3492  |
+| max_over_average_log1p |  0.2351  |
++------------------------+----------+
