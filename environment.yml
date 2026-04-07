@@ -21,6 +21,7 @@ dependencies:
   - pip:
     - black
     - python-dotenv
+    - xgboost-cpu
     - pympler
     - tqdm
     - ipywidgets
