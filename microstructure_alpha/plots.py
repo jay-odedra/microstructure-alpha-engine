@@ -1,29 +1,50 @@
+import math
 from pathlib import Path
 
-from loguru import logger
-from tqdm import tqdm
-import typer
-
-from microstructure_alpha.config import FIGURES_DIR, PROCESSED_DATA_DIR
-
-app = typer.Typer()
+import matplotlib.pyplot as plt
 
 
-@app.command()
-def main(
-    # ---- REPLACE DEFAULT PATHS AS APPROPRIATE ----
-    input_path: Path = PROCESSED_DATA_DIR / "dataset.csv",
-    output_path: Path = FIGURES_DIR / "plot.png",
-    # -----------------------------------------
+def plot_check_features_distr(
+    df,
+    features,
+    bins=100,
+    n_cols=4,
+    show=True,
+    save_path=None,
+    axes=None,
 ):
-    # ---- REPLACE THIS WITH YOUR OWN CODE ----
-    logger.info("Generating plot from data...")
-    for i in tqdm(range(10), total=10):
-        if i == 5:
-            logger.info("Something happened for iteration 5.")
-    logger.success("Plot generation complete.")
-    # -----------------------------------------
 
+    n = len(features)
+    n_rows = math.ceil(n / n_cols)
 
-if __name__ == "__main__":
-    app()
+    if axes is None:
+        fig, axes = plt.subplots(n_rows, n_cols, figsize=(6 * n_cols, 4 * n_rows))
+        axes = axes.flatten()
+        created_fig = True
+    else:
+        axes = axes.flatten()
+        fig = axes[0].figure
+        created_fig = False
+
+    for i, col in enumerate(features):
+        ax = axes[i]
+        ax.hist(df[col].dropna(), bins=bins)
+        ax.set_title(col)
+
+    for j in range(i + 1, len(axes)):
+        fig.delaxes(axes[j])
+
+    plt.tight_layout()
+
+    if save_path is not None:
+        save_path = Path(save_path)
+        save_path.parent.mkdir(parents=True, exist_ok=True)
+        fig.savefig(save_path, dpi=150, bbox_inches="tight")
+
+    if created_fig:
+        if show:
+            plt.show()
+        else:
+            plt.close(fig)
+
+    return fig, axes

@@ -1,9 +1,9 @@
 from pathlib import Path
-from loguru import logger
-from binance.client import Client
 import time
-import pandas as pd
+
+from loguru import logger
 import numpy as np
+import pandas as pd
 from tqdm import tqdm
 
 

@@ -43,7 +43,9 @@ def trade_pressure_features(df):
 
 
 def trade_change_features(df):
-
+    df["trade_count_imbalance"] = (df["buy_count"] - df["sell_count"]) / (
+        df["buy_count"] + df["sell_count"] + 1e-9
+    )
     df["trade_volume_change"] = df["total_trade_volume"].diff()
 
     df["trade_count_change"] = df["trade_count"].diff()

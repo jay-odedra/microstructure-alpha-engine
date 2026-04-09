@@ -38,7 +38,7 @@ def lob_pressure_features(df):
             bid = df[bid_col]
             ask = df[ask_col]
 
-            df[f"log_depth_ratio_{i}"] = np.log((bid + EPS) / (ask + EPS))
+            df[f"lob_depth_ratio_{i}"] = np.log((bid + EPS) / (ask + EPS))
 
     bid_vol5 = df[[f"lob_bids_volume_{i}" for i in range(1, 6)]].sum(axis=1)
     ask_vol5 = df[[f"lob_asks_volume_{i}" for i in range(1, 6)]].sum(axis=1)
@@ -55,8 +55,8 @@ def lob_pressure_features(df):
         ask_col = f"lob_asks_volume_{i}"
 
         if bid_col in df.columns and ask_col in df.columns:
-            bid = df[bid_col]  # .fillna(0)
-            ask = df[ask_col]  # .fillna(0)
+            bid = df[bid_col]
+            ask = df[ask_col]
 
             df[f"imbalance_depth_{i}"] = (bid - ask) / (bid + ask + EPS)
 
@@ -90,7 +90,6 @@ def lob_returns_and_momentum_features(df):
     df["log_return_3"] = np.log(df["mid_price"]).diff(3)
     df["log_return_5"] = np.log(df["mid_price"]).diff(5)
     df["log_return_20"] = np.log(df["mid_price"]).diff(20)
-    # momentum based return
 
     df["momentum_5_log_return_1"] = df["log_return_1"].rolling(5).mean()
     df["momentum_20_log_return_1"] = df["log_return_1"].rolling(20).mean()
