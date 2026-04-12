@@ -208,3 +208,210 @@ FEATURES_TO_TRANSFORM = [
     "std_trade_size",
     "max_over_average",
 ]
+
+
+TRANSFORMED_FEATURES = [
+    "lob_bids_volume_1_log1p",
+    "lob_bids_volume_2_log1p",
+    "lob_bids_volume_3_log1p",
+    "lob_bids_volume_4_log1p",
+    "lob_bids_volume_5_log1p",
+    "lob_bids_volume_6_log1p",
+    "lob_bids_volume_7_log1p",
+    "lob_bids_volume_8_log1p",
+    "lob_bids_volume_9_log1p",
+    "lob_bids_volume_10_log1p",
+    "lob_asks_volume_1_log1p",
+    "lob_asks_volume_2_log1p",
+    "lob_asks_volume_3_log1p",
+    "lob_asks_volume_4_log1p",
+    "lob_asks_volume_5_log1p",
+    "lob_asks_volume_6_log1p",
+    "lob_asks_volume_7_log1p",
+    "lob_asks_volume_8_log1p",
+    "lob_asks_volume_9_log1p",
+    "lob_asks_volume_10_log1p",
+    "rel_spread_log1p",
+    "spread_log1p",
+    "liquidity_log1p",
+    "total_bid_volume_10_log1p",
+    "total_ask_volume_10_log1p",
+    "total_book_volume_log1p",
+    "max_bid_ask_vol_ratio_log1p",
+    "mid_minus_micro_log1p",
+    "vol_5_log1p",
+    "vol_20_log1p",
+    "realized_vol_5_log1p",
+    "realized_vol_20_log1p",
+    "trade_count_log1p",
+    "buy_count_log1p",
+    "sell_count_log1p",
+    "total_trade_volume_log1p",
+    "buy_volume_log1p",
+    "sell_volume_log1p",
+    "avg_trade_size_log1p",
+    "max_trade_size_log1p",
+    "min_trade_size_log1p",
+    "std_trade_size_log1p",
+    "max_over_average_log1p",
+]
+
+REMOVE_PREFIXES = (
+    "lob_bids_price_",
+    "lob_asks_price_",
+    "lob_bids_volume_",
+    "lob_asks_volume_",
+)
+
+to_transform = set(FEATURES_TO_TRANSFORM)
+
+FINAL_FEATURES_WITH_TRANSFORM = [
+    f
+    for f in ALL_FEATURES
+    if not f.startswith(REMOVE_PREFIXES) and f not in to_transform
+] + TRANSFORMED_FEATURES
+
+
+L2_FEATURE_LIST = {
+    "volatility": [
+        "realized_vol_20_log1p",
+        "vol_20_log1p",
+        "realized_vol_5_log1p",
+        "vol_5_log1p",
+    ],
+    "trade_intensity": [
+        "trade_count_log1p",
+        "trade_count_change",
+        "buy_count_log1p",
+        "sell_count_log1p",
+        "total_trade_volume_log1p",
+    ],
+    "trade_size": [
+        "buy_volume_log1p",
+        "sell_volume_log1p",
+        "avg_trade_size_log1p",
+        "max_trade_size_log1p",
+        "min_trade_size_log1p",
+        "std_trade_size_log1p",
+        "max_over_average_log1p",
+    ],
+    "liquidity": [
+        "total_ask_volume_10_log1p",
+        "total_bid_volume_10_log1p",
+        "total_book_volume_log1p",
+        "liquidity_log1p",
+        "lob_bids_volume_1_log1p",
+        "lob_bids_volume_2_log1p",
+        "lob_bids_volume_3_log1p",
+        "lob_bids_volume_4_log1p",
+        "lob_bids_volume_5_log1p",
+        "lob_bids_volume_6_log1p",
+        "lob_bids_volume_7_log1p",
+        "lob_bids_volume_8_log1p",
+        "lob_bids_volume_9_log1p",
+        "lob_bids_volume_10_log1p",
+    ],
+    "volume_pressure": [
+        "max_bid_ask_vol_ratio_log1p",
+    ],
+    "spread": [
+        "spread_log1p",
+        "rel_spread_log1p",
+    ],
+    "imbalance": [
+        "imbalance_1",
+        "imbalance_5",
+        "imbalance_10",
+        "imbalance_depth_1",
+        "imbalance_depth_2",
+        "imbalance_depth_3",
+        "imbalance_depth_4",
+        "imbalance_depth_5",
+        "imbalance_depth_6",
+        "imbalance_depth_7",
+        "imbalance_depth_8",
+        "imbalance_depth_9",
+        "imbalance_depth_10",
+    ],
+    "depth_shape": [
+        "lob_depth_ratio_2",
+        "lob_depth_ratio_3",
+        "lob_depth_ratio_4",
+        "lob_depth_ratio_5",
+        "lob_depth_ratio_6",
+        "lob_depth_ratio_7",
+        "lob_depth_ratio_8",
+        "lob_depth_ratio_9",
+        "lob_depth_ratio_10",
+    ],
+    "trade_flow": [
+        "trade_volume_imbalance",
+        "trade_volume_change",
+        "sell_volume_log1p",
+        "buy_volume_log1p",
+    ],
+}
+
+
+MID_PRICE_MOVE_FINAL = [
+    # Vol
+    "realized_vol_20_log1p",
+    "realized_vol_5_log1p",
+    # trade intensity
+    "trade_count_log1p",
+    "trade_count_change",
+    # trade size
+    "std_trade_size_log1p",
+    "max_trade_size_log1p",
+    "avg_trade_size_log1p",
+    # liquidity
+    "total_bid_volume_10_log1p",
+    "total_book_volume_log1p",
+    # volume_pressure
+    "max_bid_ask_vol_ratio_log1p",
+    # spread
+    "rel_spread_log1p",
+    # imbalance
+    "imbalance_5",
+    "imbalance_10",
+    "imbalance_depth_3",
+    # depth shape
+    "lob_depth_ratio_4",
+    "lob_depth_ratio_2",
+    # trade_flow
+    "sell_volume_log1p",
+]
+
+EDA_FEATURES = [
+    "imbalance_5",
+    "microprice_change",
+    "microprice_weighted_10",
+    "trade_volume_imbalance",
+    "log_return_5",
+    "realized_vol_20",
+    "liquidity_log1p",
+    "imbalance_depth_3",
+    "imbalance_depth_5",
+    "lob_depth_ratio_7",
+    "trade_count_imbalance",
+    "lag_trade_volume_imbalance_1",
+    "std_trade_size_log1p",
+    "momentum_20_log_return_1",
+]
+
+
+SIGN_MODEL_FEATURES = [
+    "imbalance_10",
+    "imbalance_5",
+    "max_bid_ask_vol_ratio_log1p",
+    "total_bid_volume_10_log1p",
+    "trade_count_log1p",
+    "trade_count_imbalance",
+    "microprice_change",
+    "trade_volume_imbalance",
+    "realized_vol_20_log1p",
+    "trade_count_change",
+    "rel_spread_log1p",
+    "lob_depth_ratio_4",
+    "mid_minus_micro_log1p",
+]

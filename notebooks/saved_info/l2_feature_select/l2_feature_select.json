@@ -1,0 +1,79 @@
+{
+    "volatility": {
+        "realized_vol_20_log1p": 0.0003899416537703412,
+        "realized_vol_5_log1p": 0.00019363772795889515,
+        "vol_20_log1p": 8.554135313748663e-05,
+        "vol_5_log1p": 8.183533342387232e-05
+    },
+    "trade_intensity": {
+        "trade_count_log1p": 0.33774969695219265,
+        "total_trade_volume_log1p": 0.33059427646283784,
+        "buy_count_log1p": 0.1883717240640187,
+        "sell_count_log1p": 0.17357725712228964,
+        "trade_count_change": 0.0032171057605166918
+    },
+    "trade_size": {
+        "std_trade_size_log1p": 1.9397536511098696,
+        "avg_trade_size_log1p": 1.6582793400295213,
+        "max_trade_size_log1p": 1.381821520245576,
+        "buy_volume_log1p": 1.3380930855588027,
+        "sell_volume_log1p": 1.2388673421214933,
+        "max_over_average_log1p": 0.21658364621227313,
+        "min_trade_size_log1p": 0.20974676300129755
+    },
+    "liquidity": {
+        "total_book_volume_log1p": 2.9348712323972914,
+        "total_ask_volume_10_log1p": 2.207054982844344,
+        "total_bid_volume_10_log1p": 1.4894972590106377,
+        "lob_bids_volume_1_log1p": 0.8799567811207079,
+        "lob_bids_volume_3_log1p": 0.7191484301549834,
+        "liquidity_log1p": 0.6835102441783878,
+        "lob_bids_volume_4_log1p": 0.44692225759405557,
+        "lob_bids_volume_9_log1p": 0.411745933236454,
+        "lob_bids_volume_8_log1p": 0.37432611143068983,
+        "lob_bids_volume_10_log1p": 0.32194691808476106,
+        "lob_bids_volume_6_log1p": 0.28321760018914277,
+        "lob_bids_volume_7_log1p": 0.2411338688657257,
+        "lob_bids_volume_5_log1p": 0.241055740601856,
+        "lob_bids_volume_2_log1p": 0.19523111216508376
+    },
+    "volume_pressure": {
+        "max_bid_ask_vol_ratio_log1p": 0.18769064610063693
+    },
+    "spread": {
+        "spread_log1p": 0.007176321130924071,
+        "rel_spread_log1p": 1.0221880303833321e-07
+    },
+    "imbalance": {
+        "imbalance_10": 0.23243458394873925,
+        "imbalance_1": 0.17429402879359662,
+        "imbalance_depth_1": 0.17429402879359662,
+        "imbalance_5": 0.16869538896790873,
+        "imbalance_depth_3": 0.1467649418028746,
+        "imbalance_depth_2": 0.11668404082377645,
+        "imbalance_depth_4": 0.08730400276883862,
+        "imbalance_depth_5": 0.07148735770763984,
+        "imbalance_depth_9": 0.06438207256100371,
+        "imbalance_depth_7": 0.052030052392459246,
+        "imbalance_depth_10": 0.05122075962666878,
+        "imbalance_depth_6": 0.045023102309997676,
+        "imbalance_depth_8": 0.04349962846097597
+    },
+    "depth_shape": {
+        "lob_depth_ratio_4": 0.018539102980688664,
+        "lob_depth_ratio_3": 0.018026657539055347,
+        "lob_depth_ratio_2": 0.016089181589966972,
+        "lob_depth_ratio_5": 0.011985592912274207,
+        "lob_depth_ratio_9": 0.01143807166898563,
+        "lob_depth_ratio_10": 0.009333568182715742,
+        "lob_depth_ratio_8": 0.009195879032745205,
+        "lob_depth_ratio_6": 0.008194901832875957,
+        "lob_depth_ratio_7": 0.007557951994710104
+    },
+    "trade_flow": {
+        "sell_volume_log1p": 1.5357771558123976,
+        "buy_volume_log1p": 1.3646901924465868,
+        "trade_volume_change": 0.1364807456698324,
+        "trade_volume_imbalance": 0.11486630575933862
+    }
+}

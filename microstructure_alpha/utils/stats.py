@@ -46,7 +46,6 @@ def compute_signal_autocorr(
     below = np.where(acf_vals[1:] < 0.1)[0]
     tau_cutoff = below[0] + 1 if len(below) > 0 else nlags
 
-    # plot
     if plot:
         if ax is None:
             fig, ax = plt.subplots(figsize=(6, 4))

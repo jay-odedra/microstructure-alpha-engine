@@ -13,6 +13,6 @@ def apply_transform(df, features, func, suffix, use_values=True):
 
     for col in features:
         x = df[col].values if use_values else df[col]
-        df[f"{col}_{suffix}"] = func(x)
+        df[f"{col}{suffix}"] = func(x)
 
     return df

@@ -51,16 +51,18 @@ def plot_feature_overview(
         ax[3].plot([], [], label=f"sum={acf_sum:.4f}")
         ax[3].legend()
 
-        stats = (
-            f"mean: {s.mean():.2e}\n"
-            f"std: {s.std():.2e}\n"
-            f"min: {s.min():.2e}\n"
-            f"q25: {s.quantile(0.25):.2e}\n"
-            f"q50: {s.quantile(0.50):.2e}\n"
-            f"q75: {s.quantile(0.75):.2e}\n"
-            f"max: {s.max():.2e}\n\n"
-            f"top:\n{s.round(8).value_counts().head(5)}"
-        )
+        stats = f"""
+        mean: {s.mean():.2e}
+        std:  {s.std():.2e}
+        min:  {s.min():.2e}
+        25%:  {s.quantile(0.25):.2e}
+        50%:  {s.quantile(0.50):.2e}
+        75%:  {s.quantile(0.75):.2e}
+        max:  {s.max():.2e}
+
+        top:
+        {s.round(8).value_counts().head(5)}
+        """
 
         ax[4].axis("off")
         ax[4].text(0, 1, stats, va="top", family="monospace")
@@ -121,7 +123,6 @@ def conditional_expectation_plotter(
         ax[i].set_xlabel(feature)
         ax[i].set_ylabel(target)
 
-    # remove unused axes
     for j in range(len(features), len(ax)):
         fig.delaxes(ax[j])
 
