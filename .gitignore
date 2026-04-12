@@ -1,8 +1,5 @@
 # Data
 /data/
-#Figs
-/notebooks/notebook_figs/
-
 # Mac OS-specific storage files
 .DS_Store
 
