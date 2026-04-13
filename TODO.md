@@ -64,3 +64,5 @@
 - [ ] create class structure for backtesting engine
 - [ ] module needs to be much more user friendly
 - [ ] comment code and documentation
+- [ ] mode to config based setup yml
+
