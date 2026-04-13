@@ -9,23 +9,29 @@ def compute_strategy_performance(signal: pd.Series, pnl: pd.Series):
     total_pnl = pnl.sum()
 
     sharpe = mean_return / volatility if volatility != 0 else np.nan
-
     cum_pnl = pnl.cumsum()
 
     running_max = cum_pnl.cummax()
     drawdown = cum_pnl - running_max
     max_drawdown = drawdown.min()
 
-    hit_rate = (pnl > 0).mean()
     trade_mask = signal != 0
-    hit_rate = (pnl[trade_mask] > 0).mean()
+    hit_rate_all = (pnl > 0).mean()
+    hit_rate_trades = (pnl[trade_mask] > 0).mean()
+    pnl_trades = pnl[signal != 0]
+    sharpe_per_trade = (
+        pnl_trades.mean() / pnl_trades.std() if pnl_trades.std() != 0 else np.nan
+    )
+
     return {
         "sharpe": sharpe,
+        "sharpe_per_trade": sharpe_per_trade,
         "total_pnl": total_pnl,
         "mean_return": mean_return,
         "volatility": volatility,
         "max_drawdown": max_drawdown,
-        "hit_rate": hit_rate,
+        "hit_rate_all": hit_rate_all,
+        "hit_rate_trades": hit_rate_trades,
     }
 
 

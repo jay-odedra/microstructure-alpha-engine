@@ -18,14 +18,24 @@ def apply_transaction_cost(signal, cost_per_trade):
     return cost
 
 
+def apply_spread_transaction_cost(signal, spread):
+    spread = spread.reindex(signal.index)
+
+    trades = signal.diff().abs()
+    trades.iloc[0] = 0
+
+    cost = trades * (spread / 2)
+
+    return cost
+
+
 def evaluate_strategy(
     sign_preds: pd.Series,
     move_preds: pd.Series,
     returns: pd.Series,
+    spread: pd.Series,
     move_quantile: float = 0.9,
     sign_threshold: float = 0.6,
-    annualisation_factor: float = 1.0,
-    transaction_cost: float = 0.0,
 ):
     assert sign_preds.index.equals(move_preds.index)
     assert sign_preds.index.equals(returns.index)
@@ -48,9 +58,9 @@ def evaluate_strategy(
     signal = signal[valid]
     returns = returns[valid]
     assert signal.index.equals(returns.index)
-
+    # assert signal.index.equals(spread.index)
     pnl = signal * returns
-    costs = apply_transaction_cost(signal, transaction_cost)
+    costs = apply_spread_transaction_cost(signal, spread)
     pnl = pnl - costs
 
     strategy_metric = compute_strategy_performance(signal, pnl)

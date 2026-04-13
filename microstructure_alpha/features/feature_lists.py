@@ -354,6 +354,7 @@ L2_FEATURE_LIST = {
 
 
 MID_PRICE_MOVE_FINAL = [
+    #    "mid_price_moves",
     # Vol
     "realized_vol_20_log1p",
     "realized_vol_5_log1p",
@@ -401,6 +402,7 @@ EDA_FEATURES = [
 
 
 SIGN_MODEL_FEATURES = [
+    #    "mid_price_change_1_sign",
     "imbalance_10",
     "imbalance_5",
     "max_bid_ask_vol_ratio_log1p",
