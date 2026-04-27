@@ -86,7 +86,7 @@ Two prediction targets are defined:
 Models are trained using a time-series cross-validation framework:
 
 - `TimeSeriesSplit` with gap to prevent leakage
-- Rolling training method as a very rough way to account for regime shifts
+- Rolling training method as a very rough way to account for regime shifts (prior to explicit regime modelling)
 - Out-of-fold (OOF) predictions used for evaluation
 
 ### Models
@@ -156,7 +156,7 @@ Transaction costs are approximated using bid–ask spread.
   - order book imbalance
   - microprice
   - trade flow
-- Captures *directional pressure*
+- Captures directional pressure
 
 **Combined Signal**
 - Improves trading performance vs individual models
@@ -201,3 +201,62 @@ At a 1-second horizon, mid-price returns exhibit near-zero autocorrelation, cons
 
 ---
 
+
+## Regime Modelling (HMM)
+
+Markets are non-stationary, with changing volatility, liquidity, and microstructure dynamics.
+To model this explicitly, we fit a **Gaussian Hidden Markov Model (HMM)** on slow-moving structural features:
+
+- volatility (vol_5, vol_20)
+- bid–ask spread
+- order book imbalance
+- trade flow imbalance
+
+The HMM infers **regime probabilities** at each timestamp, representing latent market conditions.
+
+---
+
+### Strategy Integration
+
+The HMM is used as a **filtering layer on top of the alpha model**.
+
+- Select a regime of interest (e.g. low-volatility regime)
+- Apply a probability threshold:
+- Only allow trades when this condition is satisfied
+
+This gates the strategy, restricting trading to favourable market conditions.
+
+---
+
+### Regime-Aware Optimisation
+
+The strategy is optimised in two stages for **Sharpe ratio**:
+
+1. **Alpha optimisation (within regime)**
+   - Fix regime \(k\)
+   - Optimise:
+     - move threshold (quantile)
+     - sign threshold
+   - Store optimal parameters
+
+2. **Regime threshold optimisation**
+   - Fix alpha thresholds
+   - Vary regime probability threshold \(\theta\)
+   - Select value that maximises Sharpe
+
+---
+
+### Key Findings
+
+- Regimes correspond primarily to **volatility and liquidity states**
+- Alpha performance is **regime-dependent**
+- Filtering trades using regime probabilities:
+  - reduces low-quality trades
+  - improves Sharpe ratio and other metrics
+
+---
+
+### Interpretation
+
+The HMM captures persistent market structure that is not directly observable from raw features.
+Using it as a gating mechanism improves performance without modifying the underlying alpha model. Also a big imporvement on reproducibility across other datasets vs adhoc timeseries splits with rolling training
