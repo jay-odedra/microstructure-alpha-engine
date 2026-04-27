@@ -20,6 +20,7 @@ dependencies:
   - python-binance
   - pip:
     - black
+    - hmmlearn
     - python-dotenv
     - xgboost-cpu
     - pympler

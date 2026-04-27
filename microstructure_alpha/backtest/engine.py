@@ -75,4 +75,6 @@ def evaluate_strategy(
         **signal_quality,
     }
 
-    return all_metrics, pnl, signal
+    return all_metrics, pnl, signal, returns
+
+
